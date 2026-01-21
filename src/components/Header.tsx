@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Bell } from 'lucide-react';
 
 interface HeaderProps {
   title?: string;
@@ -7,6 +7,7 @@ interface HeaderProps {
   showNewButton?: boolean;
   buttonText?: string;
   onButtonClick?: () => void;
+  showNotifications?: boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({ 
@@ -14,7 +15,8 @@ const Header: React.FC<HeaderProps> = ({
   subtitle,
   showNewButton = true,
   buttonText = 'Nuevo Turno',
-  onButtonClick
+  onButtonClick,
+  showNotifications = false
 }) => {
   const today = new Date();
   const formattedDate = today.toLocaleDateString('es-AR', { 
@@ -38,6 +40,15 @@ const Header: React.FC<HeaderProps> = ({
           <button className="px-4 py-1.5 text-sm font-medium rounded-xl text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-colors">Semana</button>
           <button className="px-4 py-1.5 text-sm font-medium rounded-xl text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-colors">Mes</button>
         </div>
+
+        {showNotifications && (
+          <button className="relative p-2.5 bg-white hover:bg-gray-50 border border-gray-200 rounded-2xl transition-colors">
+            <Bell size={20} className="text-gray-600" />
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
+              3
+            </span>
+          </button>
+        )}
 
         {showNewButton && (
           <button 

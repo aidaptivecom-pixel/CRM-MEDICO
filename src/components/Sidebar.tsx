@@ -36,9 +36,8 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPage, onNavigate }) => {
           <input 
             type="text" 
             placeholder="Buscar..." 
-            className="w-full bg-gray-50 border border-gray-100 text-sm text-gray-700 rounded-xl pl-9 pr-12 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-100 transition-all"
+            className="w-full bg-gray-50 border border-gray-100 text-sm text-gray-700 rounded-xl pl-9 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-100 transition-all"
           />
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-medium border border-gray-200 rounded-lg px-1.5 py-0.5">⌘K</span>
         </div>
       </div>
 
@@ -51,7 +50,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPage, onNavigate }) => {
           <nav className="space-y-1">
             <NavItem 
               icon={LayoutDashboard} 
-              label="Dashboard" 
+              label="Inicio" 
               active={currentPage === 'dashboard'} 
               onClick={() => onNavigate('dashboard')}
             />

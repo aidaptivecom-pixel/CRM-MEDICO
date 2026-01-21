@@ -99,7 +99,7 @@ const TurnosPage: React.FC = () => {
     const columnTurnos = turnos.filter(t => t.estado === estado);
     
     return (
-      <div className="flex-1 min-w-[250px]">
+      <div className="flex-1 min-w-0">
         <div className={`flex items-center justify-between mb-3 pb-2 border-b-2 ${config.bg.replace('bg-', 'border-')}`}>
           <h3 className={`font-semibold text-sm ${config.color}`}>{title}</h3>
           <span className={`text-xs px-2 py-0.5 rounded-lg ${config.bg} ${config.color}`}>{count}</span>
@@ -152,8 +152,8 @@ const TurnosPage: React.FC = () => {
           {view === 'calendar' && <CalendarComponent />}
           
           {view === 'kanban' && (
-            <div className="bg-white rounded-3xl border border-gray-100 p-4">
-              <div className="flex gap-4 overflow-x-auto pb-2">
+            <div className="bg-white rounded-3xl border border-gray-100 p-4 h-fit">
+              <div className="grid grid-cols-4 gap-3">
                 <KanbanColumn title="Pendientes" estado="pendiente" count={turnos.filter(t => t.estado === 'pendiente').length} />
                 <KanbanColumn title="Confirmados" estado="confirmado" count={turnos.filter(t => t.estado === 'confirmado').length} />
                 <KanbanColumn title="Hoy" estado="hoy" count={turnos.filter(t => t.estado === 'hoy').length} />
