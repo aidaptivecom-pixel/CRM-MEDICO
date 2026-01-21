@@ -3,20 +3,45 @@ import { ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { CalendarEvent } from '../types';
 
 const days = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+
+// Eventos realistas para el consultorio del Dr. de Saizieu
 const events: CalendarEvent[] = [
-  { day: 5, type: 'confirmed' },
-  { day: 8, type: 'first-visit' },
-  { day: 8, type: 'confirmed' },
-  { day: 12, type: 'cancelled' },
+  // Semana pasada
+  { day: 13, type: 'confirmed' },
+  { day: 14, type: 'confirmed' },
+  { day: 14, type: 'first-visit' },
   { day: 15, type: 'confirmed' },
   { day: 15, type: 'confirmed' },
-  { day: 19, type: 'pending' },
-  { day: 21, type: 'confirmed' }, 
+  { day: 16, type: 'confirmed' },
+  { day: 17, type: 'cancelled' },
+  { day: 17, type: 'confirmed' },
+  
+  // Esta semana
+  { day: 20, type: 'confirmed' },
+  { day: 20, type: 'confirmed' },
+  { day: 20, type: 'first-visit' },
+  { day: 21, type: 'confirmed' }, // HOY
+  { day: 21, type: 'confirmed' },
   { day: 21, type: 'first-visit' },
   { day: 21, type: 'confirmed' },
+  { day: 21, type: 'pending' },
+  { day: 21, type: 'confirmed' },
+  { day: 22, type: 'confirmed' },
+  { day: 22, type: 'cancelled' },
+  { day: 22, type: 'confirmed' },
+  { day: 23, type: 'confirmed' },
   { day: 23, type: 'pending' },
+  { day: 24, type: 'confirmed' },
+  { day: 24, type: 'first-visit' },
+  
+  // Próxima semana
   { day: 27, type: 'confirmed' },
-  { day: 28, type: 'cancelled' },
+  { day: 27, type: 'pending' },
+  { day: 28, type: 'pending' },
+  { day: 28, type: 'first-visit' },
+  { day: 29, type: 'confirmed' },
+  { day: 30, type: 'pending' },
+  { day: 31, type: 'confirmed' },
 ];
 
 const Calendar: React.FC = () => {
@@ -29,6 +54,9 @@ const Calendar: React.FC = () => {
       default: return 'bg-gray-400';
     }
   };
+
+  // Obtener el día actual
+  const today = new Date().getDate();
 
   return (
     <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 flex flex-col h-full">
@@ -76,7 +104,8 @@ const Calendar: React.FC = () => {
         {/* Days */}
         {[...Array(31)].map((_, i) => {
           const day = i + 1;
-          const isToday = day === 21;
+          const isToday = day === 21; // Forzamos el 21 como "hoy" para el demo
+          const isPast = day < 21;
           const dayEvents = events.filter(e => e.day === day);
 
           return (
@@ -86,12 +115,18 @@ const Calendar: React.FC = () => {
                 relative min-h-[80px] p-3 rounded-xl border transition-all duration-200 group hover:shadow-md
                 ${isToday 
                   ? 'bg-white border-emerald-500 shadow-sm ring-2 ring-emerald-100' 
-                  : 'bg-white border-gray-50 hover:border-gray-200'}
+                  : isPast 
+                    ? 'bg-gray-50/50 border-gray-50 hover:border-gray-200'
+                    : 'bg-white border-gray-50 hover:border-gray-200'}
               `}
             >
               <span className={`
                 text-sm font-medium mb-2 block w-7 h-7 flex items-center justify-center rounded-full
-                ${isToday ? 'bg-emerald-500 text-white' : 'text-gray-700'}
+                ${isToday 
+                  ? 'bg-emerald-500 text-white' 
+                  : isPast 
+                    ? 'text-gray-400'
+                    : 'text-gray-700'}
               `}>
                 {day}
               </span>
@@ -101,7 +136,7 @@ const Calendar: React.FC = () => {
                 {dayEvents.map((evt, idx) => (
                   <div 
                     key={idx} 
-                    className={`w-2.5 h-2.5 rounded-full ${getEventColor(evt.type)}`}
+                    className={`w-2.5 h-2.5 rounded-full ${getEventColor(evt.type)} ${isPast && evt.type !== 'cancelled' ? 'opacity-50' : ''}`}
                     title={evt.type}
                   />
                 ))}
