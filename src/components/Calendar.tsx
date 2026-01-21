@@ -55,23 +55,23 @@ const Calendar: React.FC = () => {
         <div className="flex items-center gap-4">
           <h2 className="text-xl font-bold text-gray-900">Enero 2026</h2>
           <div className="flex gap-1">
-            <button className="p-1.5 hover:bg-gray-100 rounded-full text-gray-500 transition-colors">
+            <button className="p-1.5 hover:bg-gray-100 rounded-xl text-gray-500 transition-colors">
               <ChevronLeft size={20} />
             </button>
-            <button className="p-1.5 hover:bg-gray-100 rounded-full text-gray-500 transition-colors">
+            <button className="p-1.5 hover:bg-gray-100 rounded-xl text-gray-500 transition-colors">
               <ChevronRight size={20} />
             </button>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="text-sm font-medium text-gray-600 px-3 py-1.5 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+          <button className="text-sm font-medium text-gray-600 px-3 py-1.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors">
             Hoy
           </button>
-          <div className="bg-gray-50 p-1 rounded-lg flex text-xs font-medium text-gray-500">
-            <button className="px-3 py-1 bg-white text-gray-900 shadow-sm rounded-md">Mes</button>
-            <button className="px-3 py-1 hover:text-gray-700 transition-colors">Semana</button>
-            <button className="px-3 py-1 hover:text-gray-700 transition-colors">Día</button>
+          <div className="bg-gray-50 p-1 rounded-xl flex text-xs font-medium text-gray-500">
+            <button className="px-3 py-1.5 bg-white text-gray-900 shadow-sm rounded-lg">Mes</button>
+            <button className="px-3 py-1.5 hover:text-gray-700 transition-colors rounded-lg">Semana</button>
+            <button className="px-3 py-1.5 hover:text-gray-700 transition-colors rounded-lg">Día</button>
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@ const Calendar: React.FC = () => {
 
       <div className="grid grid-cols-7 gap-y-2 gap-x-2 flex-1 auto-rows-fr">
         {[...Array(4)].map((_, i) => (
-          <div key={`prev-${i}`} className="min-h-[80px] p-2 bg-gray-50/50 rounded-xl border border-transparent"></div>
+          <div key={`prev-${i}`} className="min-h-[80px] p-2 bg-gray-50/50 rounded-2xl border border-transparent"></div>
         ))}
 
         {[...Array(31)].map((_, i) => {
@@ -99,7 +99,7 @@ const Calendar: React.FC = () => {
             <div 
               key={day} 
               className={`
-                relative min-h-[80px] p-3 rounded-xl border transition-all duration-200 group hover:shadow-md
+                relative min-h-[80px] p-3 rounded-2xl border transition-all duration-200 group hover:shadow-md
                 ${isToday 
                   ? 'bg-white border-emerald-500 shadow-sm ring-2 ring-emerald-100' 
                   : isPast 
@@ -108,7 +108,7 @@ const Calendar: React.FC = () => {
               `}
             >
               <span className={`
-                text-sm font-medium mb-2 block w-7 h-7 flex items-center justify-center rounded-full
+                text-sm font-medium mb-2 block w-7 h-7 flex items-center justify-center rounded-xl
                 ${isToday 
                   ? 'bg-emerald-500 text-white' 
                   : isPast 
@@ -140,7 +140,7 @@ const Calendar: React.FC = () => {
           <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-blue-400"></div><span className="text-gray-500">Primera</span></div>
         </div>
 
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-100">
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 text-emerald-700 rounded-2xl border border-emerald-100">
           <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
           <span className="font-semibold">Doctoralia Premium Sincronizado</span>
           <CheckCircle2 size={12} className="ml-1" />

@@ -90,7 +90,7 @@ function App() {
         return <FacturacionPage />;
       default:
         return (
-          <div className="bg-white rounded-2xl border border-gray-100 p-12 text-center">
+          <div className="bg-white rounded-3xl border border-gray-100 p-12 text-center">
             <p className="text-gray-500">Página en construcción</p>
           </div>
         );
@@ -100,10 +100,10 @@ function App() {
   const buttonConfig = getButtonConfig();
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <div className="min-h-screen bg-gray-50/50 p-3">
       <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} />
       
-      <main className="md:ml-64 p-6 lg:p-8">
+      <main className="md:ml-[272px] p-6 lg:p-8 bg-white rounded-3xl min-h-[calc(100vh-24px)] border border-gray-100">
         <Header 
           title={getPageTitle()}
           subtitle={getPageSubtitle()}

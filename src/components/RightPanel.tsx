@@ -8,9 +8,9 @@ const RightPanel: React.FC = () => {
       <section>
         <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Acciones Rápidas</h3>
         <div className="space-y-3">
-          <button className="w-full bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-emerald-100 transition-all group text-left flex items-center justify-between">
+          <button className="w-full bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-emerald-100 transition-all group text-left flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform">
+              <div className="w-11 h-11 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform">
                 <MessageCircle size={20} />
               </div>
               <div>
@@ -21,9 +21,9 @@ const RightPanel: React.FC = () => {
             <ChevronRight size={16} className="text-gray-300 group-hover:text-emerald-500" />
           </button>
 
-          <button className="w-full bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-amber-100 transition-all group text-left flex items-center justify-between">
+          <button className="w-full bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-amber-100 transition-all group text-left flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center text-amber-600 group-hover:scale-110 transition-transform">
+              <div className="w-11 h-11 rounded-2xl bg-amber-50 flex items-center justify-center text-amber-600 group-hover:scale-110 transition-transform">
                 <FileText size={20} />
               </div>
               <div>
@@ -34,9 +34,9 @@ const RightPanel: React.FC = () => {
             <ChevronRight size={16} className="text-gray-300 group-hover:text-amber-500" />
           </button>
 
-          <button className="w-full bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-100 transition-all group text-left flex items-center justify-between">
+          <button className="w-full bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-100 transition-all group text-left flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
+              <div className="w-11 h-11 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
                 <Calendar size={20} />
               </div>
               <div>
@@ -50,13 +50,13 @@ const RightPanel: React.FC = () => {
       </section>
 
       <section className="flex-1">
-        <div className="bg-[#1f2937] p-5 rounded-2xl shadow-lg flex flex-col h-full text-white">
+        <div className="bg-[#1f2937] p-5 rounded-3xl shadow-lg flex flex-col h-full text-white">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <Bell size={18} className="text-gray-300" />
               <h3 className="font-medium text-gray-100">Notificaciones</h3>
             </div>
-            <span className="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded font-bold">4</span>
+            <span className="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-lg font-bold">4</span>
           </div>
 
           <div className="space-y-4 flex-1">
@@ -123,7 +123,7 @@ const RightPanel: React.FC = () => {
             </div>
           </div>
 
-          <button className="w-full py-2 mt-4 text-xs font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-all text-center">
+          <button className="w-full py-2 mt-4 text-xs font-medium text-gray-400 hover:text-white hover:bg-white/10 rounded-xl transition-all text-center">
             Ver todas las notificaciones
           </button>
         </div>

@@ -20,10 +20,10 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ currentPage, onNavigate }) => {
   return (
-    <aside className="hidden md:flex flex-col w-64 h-screen bg-white border-r border-gray-100 fixed left-0 top-0 z-20">
+    <aside className="hidden md:flex flex-col w-64 h-[calc(100vh-24px)] bg-white border border-gray-100 fixed left-3 top-3 z-20 rounded-3xl shadow-sm">
       {/* Logo */}
       <div className="p-6 flex items-center gap-2">
-        <div className="w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600">
+        <div className="w-9 h-9 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
           <BrainCircuit size={20} />
         </div>
         <span className="text-xl font-bold text-gray-800 tracking-tight">MindCare</span>
@@ -36,9 +36,9 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPage, onNavigate }) => {
           <input 
             type="text" 
             placeholder="Buscar..." 
-            className="w-full bg-gray-50 border border-gray-200 text-sm text-gray-700 rounded-lg pl-9 pr-12 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-100 transition-all"
+            className="w-full bg-gray-50 border border-gray-100 text-sm text-gray-700 rounded-xl pl-9 pr-12 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-100 transition-all"
           />
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-medium border border-gray-200 rounded px-1.5 py-0.5">⌘K</span>
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-medium border border-gray-200 rounded-lg px-1.5 py-0.5">⌘K</span>
         </div>
       </div>
 
@@ -106,20 +106,20 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPage, onNavigate }) => {
 
       {/* Footer */}
       <div className="p-4 border-t border-gray-100 space-y-4">
-        <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg transition-colors">
+        <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-xl transition-colors">
           <HelpCircle size={18} />
           <span>Ayuda y Soporte</span>
         </a>
         
-        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
-          <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-sm">
+        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl border border-gray-100">
+          <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-sm">
             AS
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-bold text-gray-900 truncate">Dr. Alejandro S.</p>
             <p className="text-xs text-gray-500 truncate">Psiquiatra</p>
           </div>
-          <button className="text-gray-400 hover:text-gray-600">
+          <button className="text-gray-400 hover:text-gray-600 p-1 hover:bg-gray-200 rounded-lg transition-colors">
             <LogOut size={16} />
           </button>
         </div>
@@ -140,7 +140,7 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, badge, onC
   <button 
     onClick={onClick}
     className={`
-      w-full group flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
+      w-full group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
       ${active 
         ? 'bg-emerald-50 text-emerald-700 shadow-sm ring-1 ring-emerald-100' 
         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}
@@ -151,7 +151,7 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, badge, onC
       <span>{label}</span>
     </div>
     {badge && (
-      <span className={`py-0.5 px-2 rounded-full text-xs font-bold ${active ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600'}`}>
+      <span className={`py-0.5 px-2 rounded-lg text-xs font-bold ${active ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600'}`}>
         {badge}
       </span>
     )}
