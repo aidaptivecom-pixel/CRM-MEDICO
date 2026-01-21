@@ -16,9 +16,10 @@ import {
 interface SidebarProps {
   currentPage: string;
   onNavigate: (page: string) => void;
+  onLogout?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ currentPage, onNavigate }) => {
+const Sidebar: React.FC<SidebarProps> = ({ currentPage, onNavigate, onLogout }) => {
   return (
     <aside className="hidden md:flex flex-col w-64 bg-white border-r border-gray-100 flex-shrink-0">
       {/* Logo */}
@@ -118,7 +119,11 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPage, onNavigate }) => {
             <p className="text-sm font-bold text-gray-900 truncate">Dr. Alejandro S.</p>
             <p className="text-xs text-gray-500 truncate">Psiquiatra</p>
           </div>
-          <button className="text-gray-400 hover:text-gray-600 p-1 hover:bg-gray-200 rounded-lg transition-colors">
+          <button 
+            onClick={onLogout}
+            className="text-gray-400 hover:text-red-500 p-1.5 hover:bg-red-50 rounded-lg transition-colors"
+            title="Cerrar sesión"
+          >
             <LogOut size={16} />
           </button>
         </div>

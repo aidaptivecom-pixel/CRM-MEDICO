@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import StatCard from './components/StatCard';
@@ -8,6 +8,7 @@ import WhatsAppPage from './components/WhatsAppPage';
 import TurnosPage from './components/TurnosPage';
 import PacientesPage from './components/PacientesPage';
 import FacturacionPage from './components/FacturacionPage';
+import LoginPage from './components/LoginPage';
 
 const stats = [
   { title: 'Turnos Hoy', value: '6', change: '+2 vs ayer' },
@@ -17,7 +18,31 @@ const stats = [
 ];
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentPage, setCurrentPage] = useState('dashboard');
+
+  // Check if user is already logged in
+  useEffect(() => {
+    const auth = localStorage.getItem('mindcare_auth');
+    if (auth === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('mindcare_auth');
+    setIsAuthenticated(false);
+    setCurrentPage('dashboard');
+  };
+
+  // Show login page if not authenticated
+  if (!isAuthenticated) {
+    return <LoginPage onLogin={handleLogin} />;
+  }
 
   const getPageTitle = () => {
     switch(currentPage) {
@@ -104,7 +129,7 @@ function App() {
       {/* Single container with rounded corners */}
       <div className="bg-white rounded-[32px] min-h-[calc(100vh-32px)] shadow-sm flex overflow-hidden">
         {/* Sidebar inside the container */}
-        <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} />
+        <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} onLogout={handleLogout} />
         
         {/* Main content */}
         <main className="flex-1 p-6 lg:p-8 overflow-auto">
