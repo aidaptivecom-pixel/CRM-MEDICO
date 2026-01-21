@@ -109,6 +109,7 @@ function App() {
           subtitle={getPageSubtitle()}
           showNewButton={buttonConfig.show}
           buttonText={buttonConfig.text}
+          showNotifications={currentPage === 'dashboard'}
         />
         
         {renderPage()}
