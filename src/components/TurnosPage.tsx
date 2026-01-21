@@ -113,6 +113,110 @@ const TurnosPage: React.FC = () => {
     );
   };
 
+  // Componente del panel de detalle con altura fija
+  const DetailPanel: React.FC = () => {
+    if (!selectedTurno) {
+      return (
+        <div className="bg-white rounded-3xl border border-gray-100 p-5 sticky top-4 min-h-[520px] flex flex-col items-center justify-center">
+          <Calendar size={48} className="text-gray-300 mb-3" />
+          <p className="text-gray-500">Seleccioná un turno para ver detalles</p>
+        </div>
+      );
+    }
+
+    return (
+      <div className="bg-white rounded-3xl border border-gray-100 p-5 sticky top-4 min-h-[520px] flex flex-col">
+        <div className="flex items-start justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold">
+              {selectedTurno.paciente.split(' ').map(n => n[0]).join('')}
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-900">{selectedTurno.paciente}</h3>
+              <p className="text-sm text-gray-500">{selectedTurno.telefono}</p>
+            </div>
+          </div>
+          <button className="p-1.5 hover:bg-gray-100 rounded-xl">
+            <MoreVertical size={16} className="text-gray-400" />
+          </button>
+        </div>
+
+        <div className="space-y-3 flex-1">
+          <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
+            <Calendar size={18} className="text-gray-400 flex-shrink-0" />
+            <div>
+              <p className="text-xs text-gray-500">Fecha y hora</p>
+              <p className="text-sm font-medium text-gray-900">
+                {new Date(selectedTurno.fecha).toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long' })} - {selectedTurno.hora}hs
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
+            {selectedTurno.modalidad === 'online' ? (
+              <Video size={18} className="text-blue-500 flex-shrink-0" />
+            ) : (
+              <MapPin size={18} className="text-gray-400 flex-shrink-0" />
+            )}
+            <div>
+              <p className="text-xs text-gray-500">Modalidad</p>
+              <p className="text-sm font-medium text-gray-900">
+                {selectedTurno.modalidad === 'online' ? 'Videollamada' : 'Av. Santa Fe 1206, 3F'}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
+            <Clock size={18} className="text-gray-400 flex-shrink-0" />
+            <div>
+              <p className="text-xs text-gray-500">Tratamiento</p>
+              <p className="text-sm font-medium text-gray-900">{getTipoLabel(selectedTurno.tipo).label}</p>
+            </div>
+          </div>
+
+          <div className={`flex items-center justify-between p-3 rounded-2xl ${selectedTurno.pagado ? 'bg-emerald-50' : 'bg-amber-50'}`}>
+            <div>
+              <p className="text-xs text-gray-500">Pago</p>
+              <p className={`text-lg font-bold ${selectedTurno.pagado ? 'text-emerald-700' : 'text-amber-700'}`}>
+                {formatPrecio(selectedTurno.precio)}
+              </p>
+            </div>
+            {selectedTurno.pagado ? (
+              <CheckCircle size={24} className="text-emerald-500" />
+            ) : (
+              <AlertCircle size={24} className="text-amber-500" />
+            )}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 mt-5">
+          {selectedTurno.estado === 'pendiente' && (
+            <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl text-sm font-medium transition-colors">
+              <CheckCircle size={16} />
+              Confirmar
+            </button>
+          )}
+          {selectedTurno.estado !== 'cancelado' && selectedTurno.estado !== 'completado' && (
+            <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-2xl text-sm font-medium transition-colors">
+              <XCircle size={16} />
+              Cancelar
+            </button>
+          )}
+          <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl text-sm font-medium transition-colors">
+            <MessageCircle size={16} />
+            WhatsApp
+          </button>
+          {selectedTurno.estado !== 'completado' && (
+            <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl text-sm font-medium transition-colors">
+              <Clock size={16} />
+              Recordatorio
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -152,7 +256,7 @@ const TurnosPage: React.FC = () => {
           {view === 'calendar' && <CalendarComponent />}
           
           {view === 'kanban' && (
-            <div className="bg-white rounded-3xl border border-gray-100 p-4 h-fit">
+            <div className="bg-white rounded-3xl border border-gray-100 p-4 min-h-[520px]">
               <div className="grid grid-cols-4 gap-3">
                 <KanbanColumn title="Pendientes" estado="pendiente" count={turnos.filter(t => t.estado === 'pendiente').length} />
                 <KanbanColumn title="Confirmados" estado="confirmado" count={turnos.filter(t => t.estado === 'confirmado').length} />
@@ -163,7 +267,7 @@ const TurnosPage: React.FC = () => {
           )}
 
           {view === 'list' && (
-            <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden min-h-[520px]">
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-100">
                   <tr>
@@ -235,102 +339,7 @@ const TurnosPage: React.FC = () => {
         </div>
 
         <div className="xl:col-span-1">
-          {selectedTurno ? (
-            <div className="bg-white rounded-3xl border border-gray-100 p-5 sticky top-4">
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold">
-                    {selectedTurno.paciente.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900">{selectedTurno.paciente}</h3>
-                    <p className="text-sm text-gray-500">{selectedTurno.telefono}</p>
-                  </div>
-                </div>
-                <button className="p-1.5 hover:bg-gray-100 rounded-xl">
-                  <MoreVertical size={16} className="text-gray-400" />
-                </button>
-              </div>
-
-              <div className="space-y-3 mb-5">
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
-                  <Calendar size={18} className="text-gray-400" />
-                  <div>
-                    <p className="text-xs text-gray-500">Fecha y hora</p>
-                    <p className="text-sm font-medium text-gray-900">
-                      {new Date(selectedTurno.fecha).toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long' })} - {selectedTurno.hora}hs
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
-                  {selectedTurno.modalidad === 'online' ? (
-                    <Video size={18} className="text-blue-500" />
-                  ) : (
-                    <MapPin size={18} className="text-gray-400" />
-                  )}
-                  <div>
-                    <p className="text-xs text-gray-500">Modalidad</p>
-                    <p className="text-sm font-medium text-gray-900">
-                      {selectedTurno.modalidad === 'online' ? 'Videollamada' : 'Av. Santa Fe 1206, 3F'}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
-                  <Clock size={18} className="text-gray-400" />
-                  <div>
-                    <p className="text-xs text-gray-500">Tratamiento</p>
-                    <p className="text-sm font-medium text-gray-900">{getTipoLabel(selectedTurno.tipo).label}</p>
-                  </div>
-                </div>
-
-                <div className={`flex items-center justify-between p-3 rounded-2xl ${selectedTurno.pagado ? 'bg-emerald-50' : 'bg-amber-50'}`}>
-                  <div>
-                    <p className="text-xs text-gray-500">Pago</p>
-                    <p className={`text-lg font-bold ${selectedTurno.pagado ? 'text-emerald-700' : 'text-amber-700'}`}>
-                      {formatPrecio(selectedTurno.precio)}
-                    </p>
-                  </div>
-                  {selectedTurno.pagado ? (
-                    <CheckCircle size={24} className="text-emerald-500" />
-                  ) : (
-                    <AlertCircle size={24} className="text-amber-500" />
-                  )}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2">
-                {selectedTurno.estado === 'pendiente' && (
-                  <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl text-sm font-medium transition-colors">
-                    <CheckCircle size={16} />
-                    Confirmar
-                  </button>
-                )}
-                {selectedTurno.estado !== 'cancelado' && selectedTurno.estado !== 'completado' && (
-                  <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-2xl text-sm font-medium transition-colors">
-                    <XCircle size={16} />
-                    Cancelar
-                  </button>
-                )}
-                <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl text-sm font-medium transition-colors">
-                  <MessageCircle size={16} />
-                  WhatsApp
-                </button>
-                {selectedTurno.estado !== 'completado' && (
-                  <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl text-sm font-medium transition-colors">
-                    <Clock size={16} />
-                    Recordatorio
-                  </button>
-                )}
-              </div>
-            </div>
-          ) : (
-            <div className="bg-white rounded-3xl border border-gray-100 p-8 text-center">
-              <Calendar size={48} className="mx-auto text-gray-300 mb-3" />
-              <p className="text-gray-500">Seleccioná un turno para ver detalles</p>
-            </div>
-          )}
+          <DetailPanel />
         </div>
       </div>
     </div>
