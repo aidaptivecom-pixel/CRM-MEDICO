@@ -20,7 +20,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ currentPage, onNavigate }) => {
   return (
-    <aside className="hidden md:flex flex-col w-64 h-[calc(100vh-24px)] bg-white border border-gray-100 fixed left-3 top-3 z-20 rounded-3xl shadow-sm">
+    <aside className="hidden md:flex flex-col w-64 h-[calc(100vh-32px)] bg-white fixed left-4 top-4 z-20 rounded-[32px] shadow-sm">
       {/* Logo */}
       <div className="p-6 flex items-center gap-2">
         <div className="w-9 h-9 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">

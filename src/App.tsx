@@ -100,10 +100,10 @@ function App() {
   const buttonConfig = getButtonConfig();
 
   return (
-    <div className="min-h-screen bg-gray-200 p-3">
+    <div className="min-h-screen bg-[#e5e7eb] p-4">
       <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} />
       
-      <main className="md:ml-[272px] p-6 lg:p-8 bg-white rounded-3xl min-h-[calc(100vh-24px)] shadow-sm">
+      <main className="md:ml-[280px] p-6 lg:p-8 bg-white rounded-[32px] min-h-[calc(100vh-32px)] shadow-sm">
         <Header 
           title={getPageTitle()}
           subtitle={getPageSubtitle()}
