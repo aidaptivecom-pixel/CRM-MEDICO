@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileText, Download, Eye, Search, Filter, RefreshCw, Bot, User, ExternalLink, CheckCircle, Clock, AlertCircle, TrendingUp, CreditCard, Receipt, MessageCircle } from 'lucide-react';
+import { FileText, Download, Eye, Search, RefreshCw, Bot, User, TrendingUp, Clock, AlertCircle, CreditCard, Receipt, MessageCircle } from 'lucide-react';
 
 interface Factura {
   id: string;
@@ -107,7 +107,6 @@ const FacturacionPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Stats */}
       <div className="grid grid-cols-4 gap-4">
         <div className="bg-white p-5 rounded-2xl border border-gray-100">
           <div className="flex items-center gap-3 mb-3">
@@ -147,9 +146,7 @@ const FacturacionPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Factura rápida + Tabla */}
       <div className="grid grid-cols-3 gap-6">
-        {/* Factura rápida */}
         <div className="bg-white rounded-2xl border border-gray-100 p-5">
           <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
             <CreditCard size={18} className="text-emerald-600" />
@@ -201,9 +198,7 @@ const FacturacionPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Tabla de facturas */}
         <div className="col-span-2 bg-white rounded-2xl border border-gray-100 overflow-hidden">
-          {/* Header de tabla */}
           <div className="p-4 border-b border-gray-100 flex items-center justify-between">
             <h3 className="font-bold text-gray-900">Historial de Facturas</h3>
             <div className="flex items-center gap-2">
@@ -219,7 +214,7 @@ const FacturacionPage: React.FC = () => {
               </div>
               <select 
                 value={filterEstado}
-                onChange={(e) => setFilterEstado(e.target.value as any)}
+                onChange={(e) => setFilterEstado(e.target.value as 'all' | 'pagada' | 'pendiente' | 'vencida')}
                 className="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:outline-none"
               >
                 <option value="all">Todos</option>
@@ -234,7 +229,6 @@ const FacturacionPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Tabla */}
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-100">
@@ -312,11 +306,9 @@ const FacturacionPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Modal de conversación */}
       {showConversacion && selectedFactura && selectedFactura.conversacionId && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" onClick={() => setShowConversacion(false)}>
           <div className="bg-white rounded-2xl w-full max-w-lg max-h-[80vh] overflow-hidden" onClick={e => e.stopPropagation()}>
-            {/* Header */}
             <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-emerald-50">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
@@ -337,7 +329,6 @@ const FacturacionPage: React.FC = () => {
               </button>
             </div>
 
-            {/* Mensajes */}
             <div className="p-4 space-y-3 overflow-y-auto max-h-[400px] bg-[#f0f2f5]">
               {conversaciones[selectedFactura.conversacionId]?.mensajes.map((msg, idx) => (
                 <div key={idx} className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}>
@@ -361,7 +352,6 @@ const FacturacionPage: React.FC = () => {
               ))}
             </div>
 
-            {/* Footer */}
             <div className="p-4 border-t border-gray-100 bg-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm text-gray-500">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, List, Columns3, Clock, MapPin, Video, Phone, MessageCircle, MoreVertical, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { Calendar, List, Columns, Clock, MapPin, Video, MessageCircle, MoreVertical, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import CalendarComponent from './Calendar';
 
 interface Turno {
@@ -115,7 +115,6 @@ const TurnosPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Controles de vista */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 bg-white p-1 rounded-xl border border-gray-200">
           <button
@@ -133,7 +132,7 @@ const TurnosPage: React.FC = () => {
               view === 'kanban' ? 'bg-gray-100 text-gray-900' : 'text-gray-500 hover:text-gray-700'
             }`}
           >
-            <Columns3 size={16} />
+            <Columns size={16} />
             Kanban
           </button>
           <button
@@ -149,7 +148,6 @@ const TurnosPage: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-        {/* Vista principal */}
         <div className="xl:col-span-2">
           {view === 'calendar' && <CalendarComponent />}
           
@@ -236,7 +234,6 @@ const TurnosPage: React.FC = () => {
           )}
         </div>
 
-        {/* Panel de detalle */}
         <div className="xl:col-span-1">
           {selectedTurno ? (
             <div className="bg-white rounded-2xl border border-gray-100 p-5 sticky top-4">

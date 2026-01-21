@@ -4,9 +4,7 @@ import { CalendarEvent } from '../types';
 
 const days = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 
-// Eventos realistas para el consultorio del Dr. de Saizieu
 const events: CalendarEvent[] = [
-  // Semana pasada
   { day: 13, type: 'confirmed' },
   { day: 14, type: 'confirmed' },
   { day: 14, type: 'first-visit' },
@@ -15,12 +13,10 @@ const events: CalendarEvent[] = [
   { day: 16, type: 'confirmed' },
   { day: 17, type: 'cancelled' },
   { day: 17, type: 'confirmed' },
-  
-  // Esta semana
   { day: 20, type: 'confirmed' },
   { day: 20, type: 'confirmed' },
   { day: 20, type: 'first-visit' },
-  { day: 21, type: 'confirmed' }, // HOY
+  { day: 21, type: 'confirmed' },
   { day: 21, type: 'confirmed' },
   { day: 21, type: 'first-visit' },
   { day: 21, type: 'confirmed' },
@@ -33,8 +29,6 @@ const events: CalendarEvent[] = [
   { day: 23, type: 'pending' },
   { day: 24, type: 'confirmed' },
   { day: 24, type: 'first-visit' },
-  
-  // Próxima semana
   { day: 27, type: 'confirmed' },
   { day: 27, type: 'pending' },
   { day: 28, type: 'pending' },
@@ -55,12 +49,8 @@ const Calendar: React.FC = () => {
     }
   };
 
-  // Obtener el día actual
-  const today = new Date().getDate();
-
   return (
     <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 flex flex-col h-full">
-      {/* Calendar Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <h2 className="text-xl font-bold text-gray-900">Enero 2026</h2>
@@ -86,7 +76,6 @@ const Calendar: React.FC = () => {
         </div>
       </div>
 
-      {/* Grid */}
       <div className="grid grid-cols-7 mb-4">
         {days.map(day => (
           <div key={day} className="text-center text-xs font-semibold text-gray-400 uppercase tracking-wide py-2">
@@ -96,15 +85,13 @@ const Calendar: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-7 gap-y-2 gap-x-2 flex-1 auto-rows-fr">
-        {/* Empty cells for prev month (Jan 1 2026 is Thursday) */}
         {[...Array(4)].map((_, i) => (
           <div key={`prev-${i}`} className="min-h-[80px] p-2 bg-gray-50/50 rounded-xl border border-transparent"></div>
         ))}
 
-        {/* Days */}
         {[...Array(31)].map((_, i) => {
           const day = i + 1;
-          const isToday = day === 21; // Forzamos el 21 como "hoy" para el demo
+          const isToday = day === 21;
           const isPast = day < 21;
           const dayEvents = events.filter(e => e.day === day);
 
@@ -131,7 +118,6 @@ const Calendar: React.FC = () => {
                 {day}
               </span>
 
-              {/* Event Dots */}
               <div className="flex flex-wrap gap-1.5">
                 {dayEvents.map((evt, idx) => (
                   <div 
@@ -146,7 +132,6 @@ const Calendar: React.FC = () => {
         })}
       </div>
 
-      {/* Footer Info */}
       <div className="mt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs border-t border-gray-50 pt-4">
         <div className="flex gap-4">
           <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-emerald-500"></div><span className="text-gray-500">Confirmado</span></div>

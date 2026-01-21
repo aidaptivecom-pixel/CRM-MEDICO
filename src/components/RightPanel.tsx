@@ -1,11 +1,10 @@
 import React from 'react';
-import { MessageCircle, FileText, ChevronRight, Bell, Calendar, CreditCard } from 'lucide-react';
+import { MessageCircle, FileText, ChevronRight, Bell, Calendar } from 'lucide-react';
 
 const RightPanel: React.FC = () => {
   return (
     <div className="flex flex-col gap-6">
       
-      {/* Quick Actions */}
       <section>
         <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Acciones Rápidas</h3>
         <div className="space-y-3">
@@ -50,7 +49,6 @@ const RightPanel: React.FC = () => {
         </div>
       </section>
 
-      {/* Notifications - Dark Card for Contrast */}
       <section className="flex-1">
         <div className="bg-[#1f2937] p-5 rounded-2xl shadow-lg flex flex-col h-full text-white">
           <div className="flex items-center justify-between mb-6">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Plus, Phone, Mail, FileText, Calendar, MessageCircle, TrendingUp, AlertCircle, CheckCircle, XCircle, Clock, CreditCard } from 'lucide-react';
+import { Search, Plus, Phone, Mail, FileText, Calendar, MessageCircle, AlertCircle, CheckCircle, XCircle } from 'lucide-react';
 
 interface HistorialTurno {
   fecha: string;
@@ -206,9 +206,7 @@ const PacientesPage: React.FC = () => {
 
   return (
     <div className="flex gap-6 h-[calc(100vh-180px)]">
-      {/* Lista de pacientes */}
       <div className="w-96 flex flex-col bg-white rounded-2xl border border-gray-100 overflow-hidden">
-        {/* Search y filtros */}
         <div className="p-4 border-b border-gray-100">
           <div className="relative mb-3">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
@@ -237,7 +235,6 @@ const PacientesPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Lista */}
         <div className="flex-1 overflow-y-auto">
           {filteredPacientes.map(paciente => (
             <button
@@ -273,7 +270,6 @@ const PacientesPage: React.FC = () => {
           ))}
         </div>
 
-        {/* Botón agregar */}
         <div className="p-4 border-t border-gray-100">
           <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-medium transition-colors">
             <Plus size={16} />
@@ -282,10 +278,8 @@ const PacientesPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Detalle del paciente */}
       {selectedPaciente ? (
         <div className="flex-1 bg-white rounded-2xl border border-gray-100 overflow-hidden flex flex-col">
-          {/* Header */}
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-4">
@@ -314,12 +308,9 @@ const PacientesPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Contenido */}
           <div className="flex-1 overflow-y-auto p-6">
             <div className="grid grid-cols-2 gap-6">
-              {/* Columna izquierda */}
               <div className="space-y-6">
-                {/* Info de contacto */}
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Contacto</h3>
                   <div className="space-y-2">
@@ -334,7 +325,6 @@ const PacientesPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Datos de facturación */}
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Datos de Facturación</h3>
                   {selectedPaciente.facturacion.cuit ? (
@@ -363,7 +353,6 @@ const PacientesPage: React.FC = () => {
                   )}
                 </div>
 
-                {/* Progreso */}
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Progreso del Tratamiento</h3>
                   <div className="bg-gray-50 rounded-xl p-4">
@@ -391,7 +380,6 @@ const PacientesPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Columna derecha - Historial */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Historial de Turnos</h3>
                 <div className="space-y-2">
@@ -427,7 +415,6 @@ const PacientesPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Acciones */}
           <div className="p-4 border-t border-gray-100 flex gap-2">
             <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-medium transition-colors">
               <Calendar size={16} />
