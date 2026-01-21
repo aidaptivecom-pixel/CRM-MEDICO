@@ -62,13 +62,13 @@ const TurnosPage: React.FC = () => {
     return (
       <div 
         onClick={() => setSelectedTurno(turno)}
-        className={`p-3 bg-white rounded-xl border cursor-pointer hover:shadow-md transition-all ${
+        className={`p-3 bg-white rounded-2xl border cursor-pointer hover:shadow-md transition-all ${
           selectedTurno?.id === turno.id ? 'ring-2 ring-emerald-200 border-emerald-300' : 'border-gray-100'
         }`}
       >
         <div className="flex items-start justify-between mb-2">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600">
+            <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600">
               {turno.paciente.split(' ').map(n => n[0]).join('')}
             </div>
             <div>
@@ -83,7 +83,7 @@ const TurnosPage: React.FC = () => {
           )}
         </div>
         <div className="flex items-center justify-between">
-          <span className={`text-xs px-2 py-0.5 rounded-full ${tipoConfig.color}`}>
+          <span className={`text-xs px-2 py-0.5 rounded-lg ${tipoConfig.color}`}>
             {tipoConfig.label}
           </span>
           <span className={`text-xs font-medium ${turno.pagado ? 'text-emerald-600' : 'text-amber-600'}`}>
@@ -102,7 +102,7 @@ const TurnosPage: React.FC = () => {
       <div className="flex-1 min-w-[250px]">
         <div className={`flex items-center justify-between mb-3 pb-2 border-b-2 ${config.bg.replace('bg-', 'border-')}`}>
           <h3 className={`font-semibold text-sm ${config.color}`}>{title}</h3>
-          <span className={`text-xs px-2 py-0.5 rounded-full ${config.bg} ${config.color}`}>{count}</span>
+          <span className={`text-xs px-2 py-0.5 rounded-lg ${config.bg} ${config.color}`}>{count}</span>
         </div>
         <div className="space-y-2">
           {columnTurnos.map(turno => (
@@ -116,10 +116,10 @@ const TurnosPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 bg-white p-1 rounded-xl border border-gray-200">
+        <div className="flex items-center gap-2 bg-white p-1 rounded-2xl border border-gray-200">
           <button
             onClick={() => setView('calendar')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
               view === 'calendar' ? 'bg-gray-100 text-gray-900' : 'text-gray-500 hover:text-gray-700'
             }`}
           >
@@ -128,7 +128,7 @@ const TurnosPage: React.FC = () => {
           </button>
           <button
             onClick={() => setView('kanban')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
               view === 'kanban' ? 'bg-gray-100 text-gray-900' : 'text-gray-500 hover:text-gray-700'
             }`}
           >
@@ -137,7 +137,7 @@ const TurnosPage: React.FC = () => {
           </button>
           <button
             onClick={() => setView('list')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
               view === 'list' ? 'bg-gray-100 text-gray-900' : 'text-gray-500 hover:text-gray-700'
             }`}
           >
@@ -152,7 +152,7 @@ const TurnosPage: React.FC = () => {
           {view === 'calendar' && <CalendarComponent />}
           
           {view === 'kanban' && (
-            <div className="bg-white rounded-2xl border border-gray-100 p-4">
+            <div className="bg-white rounded-3xl border border-gray-100 p-4">
               <div className="flex gap-4 overflow-x-auto pb-2">
                 <KanbanColumn title="Pendientes" estado="pendiente" count={turnos.filter(t => t.estado === 'pendiente').length} />
                 <KanbanColumn title="Confirmados" estado="confirmado" count={turnos.filter(t => t.estado === 'confirmado').length} />
@@ -163,7 +163,7 @@ const TurnosPage: React.FC = () => {
           )}
 
           {view === 'list' && (
-            <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden">
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-100">
                   <tr>
@@ -189,7 +189,7 @@ const TurnosPage: React.FC = () => {
                       >
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600">
+                            <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600">
                               {turno.paciente.split(' ').map(n => n[0]).join('')}
                             </div>
                             <span className="font-medium text-sm text-gray-900">{turno.paciente}</span>
@@ -199,7 +199,7 @@ const TurnosPage: React.FC = () => {
                           {new Date(turno.fecha).toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit' })} - {turno.hora}
                         </td>
                         <td className="px-4 py-3">
-                          <span className={`text-xs px-2 py-1 rounded-full ${tipoConfig.color}`}>
+                          <span className={`text-xs px-2 py-1 rounded-lg ${tipoConfig.color}`}>
                             {tipoConfig.label}
                           </span>
                         </td>
@@ -221,7 +221,7 @@ const TurnosPage: React.FC = () => {
                           </span>
                         </td>
                         <td className="px-4 py-3">
-                          <span className={`text-xs px-2 py-1 rounded-full ${estadoConfig.bg} ${estadoConfig.color}`}>
+                          <span className={`text-xs px-2 py-1 rounded-lg ${estadoConfig.bg} ${estadoConfig.color}`}>
                             {estadoConfig.label}
                           </span>
                         </td>
@@ -236,10 +236,10 @@ const TurnosPage: React.FC = () => {
 
         <div className="xl:col-span-1">
           {selectedTurno ? (
-            <div className="bg-white rounded-2xl border border-gray-100 p-5 sticky top-4">
+            <div className="bg-white rounded-3xl border border-gray-100 p-5 sticky top-4">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold">
                     {selectedTurno.paciente.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>
@@ -247,13 +247,13 @@ const TurnosPage: React.FC = () => {
                     <p className="text-sm text-gray-500">{selectedTurno.telefono}</p>
                   </div>
                 </div>
-                <button className="p-1.5 hover:bg-gray-100 rounded-lg">
+                <button className="p-1.5 hover:bg-gray-100 rounded-xl">
                   <MoreVertical size={16} className="text-gray-400" />
                 </button>
               </div>
 
               <div className="space-y-3 mb-5">
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
                   <Calendar size={18} className="text-gray-400" />
                   <div>
                     <p className="text-xs text-gray-500">Fecha y hora</p>
@@ -263,7 +263,7 @@ const TurnosPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
                   {selectedTurno.modalidad === 'online' ? (
                     <Video size={18} className="text-blue-500" />
                   ) : (
@@ -277,7 +277,7 @@ const TurnosPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
                   <Clock size={18} className="text-gray-400" />
                   <div>
                     <p className="text-xs text-gray-500">Tratamiento</p>
@@ -285,7 +285,7 @@ const TurnosPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className={`flex items-center justify-between p-3 rounded-xl ${selectedTurno.pagado ? 'bg-emerald-50' : 'bg-amber-50'}`}>
+                <div className={`flex items-center justify-between p-3 rounded-2xl ${selectedTurno.pagado ? 'bg-emerald-50' : 'bg-amber-50'}`}>
                   <div>
                     <p className="text-xs text-gray-500">Pago</p>
                     <p className={`text-lg font-bold ${selectedTurno.pagado ? 'text-emerald-700' : 'text-amber-700'}`}>
@@ -302,23 +302,23 @@ const TurnosPage: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-2">
                 {selectedTurno.estado === 'pendiente' && (
-                  <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-medium transition-colors">
+                  <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl text-sm font-medium transition-colors">
                     <CheckCircle size={16} />
                     Confirmar
                   </button>
                 )}
                 {selectedTurno.estado !== 'cancelado' && selectedTurno.estado !== 'completado' && (
-                  <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-xl text-sm font-medium transition-colors">
+                  <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-2xl text-sm font-medium transition-colors">
                     <XCircle size={16} />
                     Cancelar
                   </button>
                 )}
-                <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-sm font-medium transition-colors">
+                <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl text-sm font-medium transition-colors">
                   <MessageCircle size={16} />
                   WhatsApp
                 </button>
                 {selectedTurno.estado !== 'completado' && (
-                  <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-sm font-medium transition-colors">
+                  <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl text-sm font-medium transition-colors">
                     <Clock size={16} />
                     Recordatorio
                   </button>
@@ -326,7 +326,7 @@ const TurnosPage: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div className="bg-white rounded-2xl border border-gray-100 p-8 text-center">
+            <div className="bg-white rounded-3xl border border-gray-100 p-8 text-center">
               <Calendar size={48} className="mx-auto text-gray-300 mb-3" />
               <p className="text-gray-500">Seleccioná un turno para ver detalles</p>
             </div>

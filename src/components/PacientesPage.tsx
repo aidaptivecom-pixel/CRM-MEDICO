@@ -180,9 +180,9 @@ const PacientesPage: React.FC = () => {
 
   const getEstadoBadge = (estado: string) => {
     switch(estado) {
-      case 'activo': return <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">🟢 Activo</span>;
-      case 'deuda': return <span className="px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full text-xs font-medium">🟡 Deuda</span>;
-      case 'inactivo': return <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">⚪ Inactivo</span>;
+      case 'activo': return <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-lg text-xs font-medium">🟢 Activo</span>;
+      case 'deuda': return <span className="px-2 py-0.5 bg-amber-100 text-amber-700 rounded-lg text-xs font-medium">🟡 Deuda</span>;
+      case 'inactivo': return <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-medium">⚪ Inactivo</span>;
       default: return null;
     }
   };
@@ -205,8 +205,8 @@ const PacientesPage: React.FC = () => {
   };
 
   return (
-    <div className="flex gap-6 h-[calc(100vh-180px)]">
-      <div className="w-96 flex flex-col bg-white rounded-2xl border border-gray-100 overflow-hidden">
+    <div className="flex gap-6 h-[calc(100vh-260px)]">
+      <div className="w-96 flex flex-col bg-white rounded-3xl border border-gray-100 overflow-hidden">
         <div className="p-4 border-b border-gray-100">
           <div className="relative mb-3">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
@@ -215,7 +215,7 @@ const PacientesPage: React.FC = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Buscar paciente..."
-              className="w-full pl-9 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-100"
+              className="w-full pl-9 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-100"
             />
           </div>
           <div className="flex gap-1">
@@ -223,7 +223,7 @@ const PacientesPage: React.FC = () => {
               <button
                 key={f}
                 onClick={() => setFilterEstado(f)}
-                className={`flex-1 px-2 py-1.5 text-xs font-medium rounded-lg transition-all ${
+                className={`flex-1 px-2 py-1.5 text-xs font-medium rounded-xl transition-all ${
                   filterEstado === f
                     ? 'bg-gray-900 text-white'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -245,7 +245,7 @@ const PacientesPage: React.FC = () => {
               }`}
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-sm font-medium text-gray-600">
+                <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-sm font-medium text-gray-600">
                   {paciente.nombre.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -271,7 +271,7 @@ const PacientesPage: React.FC = () => {
         </div>
 
         <div className="p-4 border-t border-gray-100">
-          <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-medium transition-colors">
+          <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl text-sm font-medium transition-colors">
             <Plus size={16} />
             Nuevo Paciente
           </button>
@@ -279,11 +279,11 @@ const PacientesPage: React.FC = () => {
       </div>
 
       {selectedPaciente ? (
-        <div className="flex-1 bg-white rounded-2xl border border-gray-100 overflow-hidden flex flex-col">
+        <div className="flex-1 bg-white rounded-3xl border border-gray-100 overflow-hidden flex flex-col">
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xl">
+                <div className="w-16 h-16 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xl">
                   {selectedPaciente.nombre.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div>
@@ -295,13 +295,13 @@ const PacientesPage: React.FC = () => {
                 </div>
               </div>
               <div className="flex gap-2">
-                <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Llamar">
+                <button className="p-2 hover:bg-gray-100 rounded-xl transition-colors" title="Llamar">
                   <Phone size={18} className="text-gray-500" />
                 </button>
-                <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Email">
+                <button className="p-2 hover:bg-gray-100 rounded-xl transition-colors" title="Email">
                   <Mail size={18} className="text-gray-500" />
                 </button>
-                <button className="p-2 hover:bg-emerald-100 rounded-lg transition-colors" title="WhatsApp">
+                <button className="p-2 hover:bg-emerald-100 rounded-xl transition-colors" title="WhatsApp">
                   <MessageCircle size={18} className="text-emerald-600" />
                 </button>
               </div>
@@ -328,7 +328,7 @@ const PacientesPage: React.FC = () => {
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Datos de Facturación</h3>
                   {selectedPaciente.facturacion.cuit ? (
-                    <div className="bg-gray-50 rounded-xl p-4 space-y-2">
+                    <div className="bg-gray-50 rounded-2xl p-4 space-y-2">
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-500">CUIT:</span>
                         <span className="font-medium text-gray-900">{selectedPaciente.facturacion.cuit}</span>
@@ -343,7 +343,7 @@ const PacientesPage: React.FC = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="bg-amber-50 rounded-xl p-4 text-center">
+                    <div className="bg-amber-50 rounded-2xl p-4 text-center">
                       <AlertCircle size={24} className="mx-auto text-amber-500 mb-2" />
                       <p className="text-sm text-amber-700">Sin datos de facturación</p>
                       <button className="mt-2 text-xs text-amber-600 font-medium hover:underline">
@@ -355,7 +355,7 @@ const PacientesPage: React.FC = () => {
 
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Progreso del Tratamiento</h3>
-                  <div className="bg-gray-50 rounded-xl p-4">
+                  <div className="bg-gray-50 rounded-2xl p-4">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm text-gray-600">
                         {selectedPaciente.sesionesCompletadas} de {selectedPaciente.sesionesTotales} sesiones
@@ -384,7 +384,7 @@ const PacientesPage: React.FC = () => {
                 <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Historial de Turnos</h3>
                 <div className="space-y-2">
                   {selectedPaciente.historial.map((turno, idx) => (
-                    <div key={idx} className={`flex items-center justify-between p-3 rounded-xl border ${
+                    <div key={idx} className={`flex items-center justify-between p-3 rounded-2xl border ${
                       turno.estado === 'asistio' 
                         ? 'bg-white border-gray-100' 
                         : turno.estado === 'no_asistio'
@@ -416,22 +416,22 @@ const PacientesPage: React.FC = () => {
           </div>
 
           <div className="p-4 border-t border-gray-100 flex gap-2">
-            <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-medium transition-colors">
+            <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl text-sm font-medium transition-colors">
               <Calendar size={16} />
               Nuevo Turno
             </button>
-            <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-sm font-medium transition-colors">
+            <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl text-sm font-medium transition-colors">
               <FileText size={16} />
               Generar Factura
             </button>
-            <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-sm font-medium transition-colors">
+            <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl text-sm font-medium transition-colors">
               <MessageCircle size={16} />
               Enviar WhatsApp
             </button>
           </div>
         </div>
       ) : (
-        <div className="flex-1 bg-white rounded-2xl border border-gray-100 flex items-center justify-center">
+        <div className="flex-1 bg-white rounded-3xl border border-gray-100 flex items-center justify-center">
           <div className="text-center">
             <Search size={48} className="mx-auto text-gray-300 mb-3" />
             <p className="text-gray-500">Seleccioná un paciente para ver su ficha</p>
