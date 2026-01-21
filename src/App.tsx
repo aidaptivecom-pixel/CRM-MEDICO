@@ -90,7 +90,7 @@ function App() {
         return <FacturacionPage />;
       default:
         return (
-          <div className="bg-white rounded-3xl border border-gray-100 p-12 text-center">
+          <div className="bg-gray-50 rounded-2xl p-12 text-center">
             <p className="text-gray-500">Página en construcción</p>
           </div>
         );
@@ -100,20 +100,25 @@ function App() {
   const buttonConfig = getButtonConfig();
 
   return (
-    <div className="min-h-screen bg-[#e5e7eb] p-4">
-      <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} />
-      
-      <main className="md:ml-[280px] p-6 lg:p-8 bg-white rounded-[32px] min-h-[calc(100vh-32px)] shadow-sm">
-        <Header 
-          title={getPageTitle()}
-          subtitle={getPageSubtitle()}
-          showNewButton={buttonConfig.show}
-          buttonText={buttonConfig.text}
-          showNotifications={currentPage === 'dashboard'}
-        />
+    <div className="min-h-screen bg-gray-200 p-4">
+      {/* Single container with rounded corners */}
+      <div className="bg-white rounded-[32px] min-h-[calc(100vh-32px)] shadow-sm flex overflow-hidden">
+        {/* Sidebar inside the container */}
+        <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} />
         
-        {renderPage()}
-      </main>
+        {/* Main content */}
+        <main className="flex-1 p-6 lg:p-8 overflow-auto">
+          <Header 
+            title={getPageTitle()}
+            subtitle={getPageSubtitle()}
+            showNewButton={buttonConfig.show}
+            buttonText={buttonConfig.text}
+            showNotifications={currentPage === 'dashboard'}
+          />
+          
+          {renderPage()}
+        </main>
+      </div>
     </div>
   );
 }
