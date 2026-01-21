@@ -13,7 +13,12 @@ import {
   LogOut
 } from 'lucide-react';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  currentPage: string;
+  onNavigate: (page: string) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ currentPage, onNavigate }) => {
   return (
     <aside className="hidden md:flex flex-col w-64 h-screen bg-white border-r border-gray-100 fixed left-0 top-0 z-20">
       {/* Logo */}
@@ -44,10 +49,32 @@ const Sidebar: React.FC = () => {
         <div>
           <div className="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Gestión</div>
           <nav className="space-y-1">
-            <NavItem icon={LayoutDashboard} label="Dashboard" active />
-            <NavItem icon={CalendarDays} label="Turnos" badge="4" />
-            <NavItem icon={Users} label="Pacientes" />
-            <NavItem icon={MessageCircle} label="WhatsApp" />
+            <NavItem 
+              icon={LayoutDashboard} 
+              label="Dashboard" 
+              active={currentPage === 'dashboard'} 
+              onClick={() => onNavigate('dashboard')}
+            />
+            <NavItem 
+              icon={CalendarDays} 
+              label="Turnos" 
+              badge="4" 
+              active={currentPage === 'turnos'}
+              onClick={() => onNavigate('turnos')}
+            />
+            <NavItem 
+              icon={Users} 
+              label="Pacientes" 
+              active={currentPage === 'pacientes'}
+              onClick={() => onNavigate('pacientes')}
+            />
+            <NavItem 
+              icon={MessageCircle} 
+              label="WhatsApp" 
+              badge="3"
+              active={currentPage === 'whatsapp'}
+              onClick={() => onNavigate('whatsapp')}
+            />
           </nav>
         </div>
 
@@ -55,9 +82,24 @@ const Sidebar: React.FC = () => {
         <div>
           <div className="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Administración</div>
           <nav className="space-y-1">
-            <NavItem icon={Receipt} label="Facturación" />
-            <NavItem icon={FileText} label="Reportes" />
-            <NavItem icon={Settings} label="Configuración" />
+            <NavItem 
+              icon={Receipt} 
+              label="Facturación" 
+              active={currentPage === 'facturacion'}
+              onClick={() => onNavigate('facturacion')}
+            />
+            <NavItem 
+              icon={FileText} 
+              label="Reportes" 
+              active={currentPage === 'reportes'}
+              onClick={() => onNavigate('reportes')}
+            />
+            <NavItem 
+              icon={Settings} 
+              label="Configuración" 
+              active={currentPage === 'config'}
+              onClick={() => onNavigate('config')}
+            />
           </nav>
         </div>
       </div>
@@ -70,13 +112,11 @@ const Sidebar: React.FC = () => {
         </a>
         
         <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
-          <img 
-            src="https://picsum.photos/100/100" 
-            alt="Dr Profile" 
-            className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm"
-          />
+          <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-sm">
+            AS
+          </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-bold text-gray-900 truncate">Dr. Ricardo D.</p>
+            <p className="text-sm font-bold text-gray-900 truncate">Dr. Alejandro S.</p>
             <p className="text-xs text-gray-500 truncate">Psiquiatra</p>
           </div>
           <button className="text-gray-400 hover:text-gray-600">
@@ -93,13 +133,14 @@ interface NavItemProps {
   label: string;
   active?: boolean;
   badge?: string;
+  onClick?: () => void;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, badge }) => (
-  <a 
-    href="#" 
+const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, badge, onClick }) => (
+  <button 
+    onClick={onClick}
     className={`
-      group flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
+      w-full group flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
       ${active 
         ? 'bg-emerald-50 text-emerald-700 shadow-sm ring-1 ring-emerald-100' 
         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}
@@ -110,11 +151,11 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, badge }) =
       <span>{label}</span>
     </div>
     {badge && (
-      <span className="bg-emerald-100 text-emerald-700 py-0.5 px-2 rounded-full text-xs font-bold">
+      <span className={`py-0.5 px-2 rounded-full text-xs font-bold ${active ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600'}`}>
         {badge}
       </span>
     )}
-  </a>
+  </button>
 );
 
 export default Sidebar;
